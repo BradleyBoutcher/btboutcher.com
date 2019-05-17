@@ -1,29 +1,33 @@
-#!/usr/bin/env groovy
-
 pipeline {
+  agent {
+    docker {
+      image 'node'
+      args '-u root'
+    }
 
-    agent {
-        docker {
-            image 'node'
-            args '-u root'
-        }
+  }
+  stages {
+    stage('Build') {
+      steps {
+        echo 'Building...'
+        sh 'npm install'
+      }
     }
-    environment {
-        CI = 'true';
+    stage('Test') {
+      steps {
+        echo 'Testing...'
+        sh 'npm test'
+      }
     }
-    
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building...'
-                sh 'npm install'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-                sh 'npm test'
-            }
-        }
+    stage('Deliver') {
+      steps {
+        sh './jenkins/scripts/deliver.sh'
+        input ' Finished using the web site? (Click "Proceed" to continue'
+        sh './jenkins/scripts/kill.sh'
+      }
     }
+  }
+  environment {
+    CI = 'true'
+  }
 }
