@@ -1,10 +1,13 @@
 pipeline {
   agent {
     docker {
-      image 'node'
-      args '-u root'
+        image 'node'
+        args '-u root'
     }
-
+    
+    environment {
+        CI = 'true'
+    }
   }
     stages {
         stage('Build') {
@@ -27,8 +30,4 @@ pipeline {
             }
         }
     }
-  }
-  environment {
-    CI = 'true'
-  }
-}
+
