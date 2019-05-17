@@ -1,17 +1,24 @@
-#!/usr/bin/env groovy
-
 pipeline {
+  agent {
+    docker {
+      image 'node'
+      args '-u root'
+    }
 
-    agent {
-        docker {
-            image 'node'
-            args '-u root'
-        }
+  }
+  stages {
+    stage('Build') {
+      steps {
+        echo 'Building...'
+        sh 'npm install'
+      }
     }
-    environment {
-        CI = 'true';
+    stage('Test') {
+      steps {
+        echo 'Testing...'
+        sh 'npm test'
+      }
     }
-    
     stages {
         stage('Build') {
             steps {
@@ -33,4 +40,8 @@ pipeline {
             }
         }
     }
+  }
+  environment {
+    CI = 'true'
+  }
 }
