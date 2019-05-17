@@ -7,6 +7,11 @@ pipeline {
 
   }
   stages {
+    stage('Initialize'){
+        def dockerHome = tool 'myDocker'
+        def mavenHome  = tool 'myMaven'
+        env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
+    }
     stage('Build') {
       steps {
         echo 'Building...'
@@ -19,12 +24,10 @@ pipeline {
         sh 'npm test'
       }
     }
-    stage('Deliver') {
-      steps {
-        sh 'npm start'
-        input ' Finished using the web site? (Click "Proceed" to continue'
-        sh 'npm eject'
-      }
+    stage('Push to Docker Registry'){
+        withCredentials([usernamePassword(credentialsId: 'dockerHubAccount', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            pushToImage(CONTAINER_NAME, CONTAINER_TAG, USERNAME, PASSWORD)
+        }
     }
   }
   environment {
