@@ -1,39 +1,47 @@
 pipeline {
-    agent {
-        docker {
-            image 'node'
-            args '-u root'
-        }
+  environment {
+    registry = "bboutcher/btboutcher.com"
+    registryCredential = 'dockerHubAccount'
+    dockerImage = ''
+  }
+  agent any
+  tools {nodejs "node" }
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/bradleyboutcher/btboutcher.com'
+      }
     }
-    stages {
-        stage('Initialize'){
-            steps{
-                def dockerHome = tool 'myDocker'
-                def mavenHome  = tool 'myMaven'
-                env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
-            }
-        }
-        stage('Build') {
-        steps {
-            echo 'Building...'
-            sh 'npm install'
-        }
-        }
-        stage('Test') {
-        steps {
-            echo 'Testing...'
-            sh 'npm test'
-        }
-        }
-        stage('Push to Docker Registry') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerHubAccount', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    pushToImage(CONTAINER_NAME, CONTAINER_TAG, USERNAME, PASSWORD)
-                }
-            }
-        }
+    stage('Build') {
+       steps {
+         sh 'npm install'
+       }
     }
-    environment {
-        CI = 'true'
+    stage('Test') {
+      steps {
+        sh 'npm test'
+      }
     }
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+    stage('Deploy Image') {
+      steps{
+         script {
+            docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
+  }
 }
