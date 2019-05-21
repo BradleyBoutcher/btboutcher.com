@@ -1,6 +1,6 @@
 pipeline {
+  def dockerImage
   environment {
-    def dockerImage
     registry = "bboutcher/btboutcher.com"
     registryCredential = 'dockerHubAccount'
     CI = 'true'
