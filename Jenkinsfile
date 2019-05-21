@@ -26,7 +26,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build("bboutcher/btboutcher.com")
+          dockerImage = docker.build("bboutcher/btboutcher.com", "./dockerfile")
         }
       }
     }
