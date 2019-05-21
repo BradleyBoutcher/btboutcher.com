@@ -3,6 +3,7 @@ pipeline {
     registry = "bboutcher/btboutcher.com"
     registryCredential = 'dockerHubAccount'
     dockerImage = ''
+    CI = 'true'
   }
   agent any
   tools {nodejs "node" }
