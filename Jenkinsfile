@@ -1,8 +1,8 @@
 pipeline {
   environment {
+    def dockerImage
     registry = "bboutcher/btboutcher.com"
     registryCredential = 'dockerHubAccount'
-    dockerImage = ''
     CI = 'true'
   }
   agent any
