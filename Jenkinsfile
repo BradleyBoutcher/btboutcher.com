@@ -1,8 +1,8 @@
 pipeline {
-  def dockerImage
   environment {
     registry = "bboutcher/btboutcher.com"
     registryCredential = 'dockerHubAccount'
+    dockerImage = ''
     CI = 'true'
   }
   agent any
@@ -26,14 +26,14 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build(registry + ":$BUILD_NUMBER")
+          dockerImage = docker.build("bboutcher/btboutcher.com")
         }
       }
     }
     stage('Deploy Image') {
       steps{
          script {
-            withDockerRegistry( registry, registryCredential ) {
+            withDockerRegistry( "", registryCredential ) {
             dockerImage.push()
           }
         }
