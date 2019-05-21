@@ -1,48 +1,36 @@
-pipeline {
-  environment {
-    registry = "bboutcher/btboutcher.com"
-    registryCredential = 'dockerHubAccount'
-    dockerImage = ''
-    CI = 'true'
-  }
-  agent any
-  tools {nodejs "node" }
-  stages {
-    stage('Cloning Git') {
-      steps {
-        git 'https://github.com/bradleyboutcher/btboutcher.com'
-      }
+node {
+    def app
+
+    stage('Clone repository') {
+        /* Let's make sure we have the repository cloned to our workspace */
+
+        checkout scm
     }
-    stage('Build') {
-       steps {
-         sh 'npm install'
-       }
+
+    stage('Build image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
+
+        app = docker.build("getintodevops/hellonode")
     }
-    stage('Test') {
-      steps {
-        sh 'npm test --no-watch'
-      }
-    }
-    stage('Building image') {
-      steps{
-        script {
-          dockerImage = docker.build("bboutcher/btboutcher.com", "-f dockerfile .")
+
+    stage('Test image') {
+        /* Ideally, we would run a test framework against our image.
+         * For this example, we're using a Volkswagen-type approach ;-) */
+
+        app.inside {
+            sh 'echo "Tests passed"'
         }
-      }
     }
-    stage('Deploy Image') {
-      steps{
-         script {
-            withDockerRegistry( registry, registryCredential ) {
-            dockerImage.push()
-          }
+
+    stage('Push image') {
+        /* Finally, we'll push the image with two tags:
+         * First, the incremental build number from Jenkins
+         * Second, the 'latest' tag.
+         * Pushing multiple tags is cheap, as all the layers are reused. */
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerHubAccount') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
         }
-      }
     }
-    stage('Remove Unused docker image') {
-      steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
-      }
-    }
-  }
 }
