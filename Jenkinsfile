@@ -9,6 +9,7 @@ pipeline {
     stage('Running Tests') {
       steps {
         script {
+          sh 'which docker-compose'
           sh '/usr/local/bin/docker-compose -f docker/Development/docker-compose.yml run --rm tests'
         }
 
