@@ -4,6 +4,7 @@ pipeline {
         registryCredential = 'dockerHubAccount'
         dockerImage = ''
         CI = 'true'
+        PATH='$PATH:~/.local/bin'
     }
     agent any
     tools {nodejs "node" }
@@ -14,11 +15,11 @@ pipeline {
             }
         }
         stage('Running Tests') {
-                steps {
-                        script {
-                                sh 'docker-compose -f docker/Development/docker-compose.yml run --rm tests'
-                        }
+            steps {
+                script {
+                        sh 'docker-compose -f docker/Development/docker-compose.yml run --rm tests'
                 }
+            }
         }
         stage('Building Development Image') {
             steps {
@@ -36,7 +37,7 @@ pipeline {
                 }
             }
         }
-        stage('Remove Unused docker image') {
+        stage('Remove Development Image') {
             steps {
                 sh "docker rmi $registry:$BUILD_NUMBER"
             }
