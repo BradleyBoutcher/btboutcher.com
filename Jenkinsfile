@@ -9,8 +9,7 @@ pipeline {
     stage('Running Tests') {
       steps {
         script {
-          sh 'which docker-compose'
-          sh '/usr/local/bin/docker-compose -f docker/Development/docker-compose.yml run --rm tests'
+          sh '/usr/bin/docker-compose -f docker/Development/docker-compose.yml run --rm tests'
         }
 
       }
@@ -40,7 +39,7 @@ pipeline {
     }
     stage('Deploy Production Build') {
       steps {
-        sh '/usr/local/bin/docker-compose -f docker/Production/docker-compose.yml up -d --build web'
+        sh '/usr/bin/docker-compose -f docker/Production/docker-compose.yml up -d --build web'
       }
     }
   }
