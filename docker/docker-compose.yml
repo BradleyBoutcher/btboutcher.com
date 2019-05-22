@@ -4,7 +4,7 @@ services:
     container_name: website
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     volumes:
       - '.:/app'
       - '/app/node_modules'
@@ -15,7 +15,7 @@ services:
   tests:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     volumes:
       - '.:/app'
       - '/app/node_modules'
