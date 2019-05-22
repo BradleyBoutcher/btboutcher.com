@@ -3,8 +3,8 @@ services:
   web:
     container_name: website
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../../.
+      dockerfile: docker/Development/Dockerfile
     volumes:
       - '.:/app'
       - '/app/node_modules'
@@ -14,8 +14,8 @@ services:
       - NODE_ENV=development
   tests:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../../.
+      dockerfile: docker/Development/Dockerfile
     volumes:
       - '.:/app'
       - '/app/node_modules'

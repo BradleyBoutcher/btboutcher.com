@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  web:
+    container_name: website
+    build:
+      context: ../../.
+      dockerfile: docker/Production/Dockerfile
+    ports:
+      - '80:80'

@@ -26,7 +26,7 @@ COPY . /usr/src/app
 EXPOSE 3000
 
 # Environment variables
-ENV NODE_ENV production
+ENV NODE_ENV development
 ENV PORT 3000
 ENV PUBLIC_PATH "/"
 
