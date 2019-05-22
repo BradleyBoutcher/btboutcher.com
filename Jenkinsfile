@@ -51,6 +51,6 @@ pipeline {
     registryCredential = 'dockerHubAccount'
     dockerImage = ''
     CI = 'true'
-    PATH = '$PATH:/usr/local/bin'
+    PATH = '/usr/local/bin:$PATH'
   }
 }
