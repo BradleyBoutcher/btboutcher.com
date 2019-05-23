@@ -7,16 +7,13 @@ pipeline {
     stage('Cloning Git') {
       steps {
         git 'https://github.com/bradleyboutcher/btboutcher.com'
-        script {
-          sh 'npm install'
-        }
       }
     }
     // Run tests using docker-compose
     stage('Running Tests') {
       steps {
         script {
-          sh 'make tests'
+          sh 'docker-compose -f docker/Development/docker-compose.yml run --rm tests'
         }
       }
     }
