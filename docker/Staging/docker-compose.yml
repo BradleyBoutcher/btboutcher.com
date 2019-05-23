@@ -5,6 +5,6 @@ services:
     container_name: staging
     build:
       context: ../../.
-      dockerfile: docker/Production/Dockerfile
+      dockerfile: docker/Staging/Dockerfile
     ports:
       - '1234:80'
