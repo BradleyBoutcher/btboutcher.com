@@ -13,7 +13,7 @@ pipeline {
     stage('Running Tests') {
       steps {
         script {
-          sh 'docker-compose -f docker/Development/docker-compose.yml run --rm tests'
+          sh 'make tests'
         }
       }
     }
@@ -21,9 +21,8 @@ pipeline {
     stage('Building Development Image') {
       steps {
         script {
-          dockerImage = docker.build(registry + ":$BUILD_NUMBER", "-f docker/Development/Dockerfile .")
+          sh "docker build -t bboutcher/btboutcher.com:$BUILD_NUMBER -f docker/Development/Dockerfile ."
         }
-
       }
     }
     // Save development image in repository
