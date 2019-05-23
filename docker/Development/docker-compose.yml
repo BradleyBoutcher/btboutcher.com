@@ -19,4 +19,4 @@ services:
     volumes:
       - '.:/app'
       - '/app/node_modules'
-    command: ["npm", "run", "test"]
+    command: ["npm", "run", "test", "--watchAll=false"]
