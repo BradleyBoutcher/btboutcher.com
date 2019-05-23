@@ -1,5 +1,6 @@
 version: '3.3'
 services:
+  # Development environment
   web:
     container_name: website
     build:
@@ -12,6 +13,7 @@ services:
       - '3000:3000'
     environment:
       - NODE_ENV=development
+  # Run tests without watching
   tests:
     build:
       context: ../../.
