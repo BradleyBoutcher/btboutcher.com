@@ -2,7 +2,7 @@ version: '3.3'
 services:
   # Development environment
   dev:
-    container_name: website
+    container_name: dev
     build:
       context: ../../.
       dockerfile: docker/Development/Dockerfile
