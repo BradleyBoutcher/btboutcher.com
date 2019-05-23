@@ -9,20 +9,19 @@ pipeline {
         git 'https://github.com/bradleyboutcher/btboutcher.com'
       }
     }
-    // Run tests using docker-compose
-    stage('Running Tests') {
-      steps {
-        script {
-          sh 'make tests'
-        }
-
-      }
-    }
     // If successful, build development image
     stage('Building Development Image') {
       steps {
         script {
           dockerImage = docker.build(registry + ":$BUILD_NUMBER", "-f docker/Development/Dockerfile .")
+        }
+      }
+    }
+    // Run tests using docker-compose
+    stage('Running Tests') {
+      steps {
+        script {
+          sh 'make tests'
         }
 
       }
