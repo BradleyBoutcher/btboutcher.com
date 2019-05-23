@@ -16,3 +16,6 @@ tests: ## Run the current test suite
 
 production: ## Deploy or update a production build 
 	@docker-compose -f docker/Production/docker-compose.yml up -d --build production
+
+staging: ## Deploy or update a production build 
+	@docker-compose -f docker/Staging/docker-compose.yml up -d --build staging
