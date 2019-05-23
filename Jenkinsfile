@@ -22,7 +22,7 @@ pipeline {
     stage('Building Development Image') {
       steps {
         script {
-          dockerImage = docker.build(registry + "$BUILD_NUMBER", "-f docker/Development/Dockerfile .")
+          dockerImage = docker.build(registry + ":$BUILD_NUMBER", "-f docker/Development/Dockerfile .")
         }
 
       }
