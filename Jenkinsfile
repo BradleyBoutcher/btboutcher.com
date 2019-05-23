@@ -22,7 +22,7 @@ pipeline {
     stage('Building Development Image') {
       steps {
         script {
-          dockerImage = docker.build(registry + "dev:$BUILD_NUMBER", "-f docker/Development/Dockerfile .")
+          dockerImage = docker.build(registry + "$BUILD_NUMBER", "-f docker/Development/Dockerfile .")
         }
 
       }
@@ -32,6 +32,7 @@ pipeline {
       steps {
         script {
           docker.withRegistry( '', registryCredential ) {
+            dockerImage.push();
             dockerImage.push("latest")
           }
         }
