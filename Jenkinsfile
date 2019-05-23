@@ -13,7 +13,7 @@ pipeline {
     stage('Running Tests') {
       steps {
         script {
-          sh '/usr/bin/docker-compose -f docker/Development/docker-compose.yml run --rm tests'
+          sh 'make tests'
         }
 
       }
@@ -51,7 +51,7 @@ pipeline {
     // Deploy production build to server, automatically updating as needed
     stage('Deploy Production Build') {
       steps {
-        sh '/usr/bin/docker-compose -f docker/Production/docker-compose.yml up -d --build web'
+        sh 'make production'
       }
     }
   }

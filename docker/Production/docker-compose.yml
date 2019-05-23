@@ -1,7 +1,7 @@
 version: '3.3'
 # Create production build and host on port 80
 services:
-  web:
+  production:
     container_name: website
     build:
       context: ../../.
