@@ -76,15 +76,6 @@ pipeline {
     * CD
     **/
 
-    // Deploy build to staging environment, automatically updating as needed
-    stage('Deploy Development Build') {
-      when {
-        branch 'master'
-      }
-      steps {
-        sh 'make staging'
-      }
-    }
     // Deploy production build, automatically updating as needed
     stage('Deploy Production Build') {
       when {

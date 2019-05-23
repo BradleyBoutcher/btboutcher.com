@@ -1,8 +1,8 @@
 version: '3.3'
 services:
   # Development environment
-  staging:
-    container_name: staging
+  dev:
+    container_name: dev
     build:
       context: ../../.
       dockerfile: docker/Development/Dockerfile

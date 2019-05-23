@@ -8,8 +8,8 @@ help: ## Output available commands
 	@echo
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
-staging:  ## Run a development environment on port 3000
-	@docker-compose -f docker/Development/docker-compose.yml up -d --build staging
+dev:  ## Run a development environment on port 3000
+	@docker-compose -f docker/Development/docker-compose.yml up -d --build dev
 
 tests: ## Run the current test suite
 	@docker-compose -f docker/Development/docker-compose.yml run --rm tests
