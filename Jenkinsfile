@@ -20,6 +20,7 @@ pipeline {
     // If successful, build development image
     stage('Building Development Image') {
       steps {
+        script {
           dockerImage = docker.build(registry + ":$BUILD_NUMBER", "-f docker/Development/Dockerfile .")
         }
       }
@@ -33,7 +34,6 @@ pipeline {
             dockerImage.push("latest")
           }
         }
-
       }
     }
     // Remove local development image
