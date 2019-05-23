@@ -13,15 +13,14 @@ pipeline {
     stage('Running Tests') {
       steps {
         script {
-          sh 'make tests'
+          sh 'make test'
         }
       }
     }
     // If successful, build development image
     stage('Building Development Image') {
       steps {
-        script {
-          sh "docker-compose -f docker/Development/docker-compose.yml build dev"
+          dockerImage = docker.build(registry + ":$BUILD_NUMBER", "-f docker/Development/Dockerfile .")
         }
       }
     }
