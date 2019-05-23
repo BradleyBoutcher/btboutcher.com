@@ -30,7 +30,7 @@ ENV NODE_ENV development
 ENV PORT 3000
 ENV PUBLIC_PATH "/"
 
-RUN npm run-script build
+RUN npm build
 
 # Main command
 CMD [ "npm", "start" ]
