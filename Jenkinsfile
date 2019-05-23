@@ -7,13 +7,8 @@ pipeline {
     stage('Cloning Git') {
       steps {
         git 'https://github.com/bradleyboutcher/btboutcher.com'
-      }
-    }
-    // If successful, build development image
-    stage('Building Development Image') {
-      steps {
         script {
-          dockerImage = docker.build(registry + ":$BUILD_NUMBER", "-f docker/Development/Dockerfile .")
+          sh 'npm install'
         }
       }
     }
@@ -22,6 +17,14 @@ pipeline {
       steps {
         script {
           sh 'make tests'
+        }
+      }
+    }
+    // If successful, build development image
+    stage('Building Development Image') {
+      steps {
+        script {
+          dockerImage = docker.build(registry + ":$BUILD_NUMBER", "-f docker/Development/Dockerfile .")
         }
 
       }
