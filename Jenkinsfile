@@ -19,8 +19,8 @@ pipeline {
         }
       }
     }
-    // If successful, build development image
-    stage('Building Development Image') {
+    // If successful, build an image
+    stage('Building Image') {
       steps {
         script {
           dockerImage = docker.build(registry + ":$BUILD_NUMBER", "-f docker/Development/Dockerfile .")
@@ -40,8 +40,8 @@ pipeline {
         }
       }
     }
-    // Update 'latest' only when production updates
-    stage('Push staging Image') {
+    // Update 'staging' with merged image
+    stage('Push Staging Image') {
       when {
         branch 'master'
       }
@@ -77,7 +77,7 @@ pipeline {
     **/
 
     // Deploy build to staging environment, automatically updating as needed
-    stage('Deploy Development Build') {
+    stage('Deploy Staging Build') {
       when {
         branch 'master'
       }

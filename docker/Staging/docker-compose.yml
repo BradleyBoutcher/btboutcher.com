@@ -1,0 +1,10 @@
+version: '3.3'
+# Create staging build and host on port 1234
+services:
+  staging:
+    container_name: staging
+    build:
+      context: ../../.
+      dockerfile: docker/Staging/Dockerfile
+    ports:
+      - '1234:80'
