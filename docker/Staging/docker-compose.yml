@@ -1,7 +1,7 @@
 version: '3.3'
 # Create staging build and host on port 1234
 services:
-  production:
+  staging:
     container_name: staging
     build:
       context: ../../.
