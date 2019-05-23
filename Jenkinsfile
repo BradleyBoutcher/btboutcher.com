@@ -21,7 +21,7 @@ pipeline {
     stage('Building Development Image') {
       steps {
         script {
-          sh "docker build -t bboutcher/btboutcher.com:$BUILD_NUMBER -f docker/Development/Dockerfile ."
+          sh "docker-compose -f docker/Development/docker-compose.yml build dev"
         }
       }
     }
