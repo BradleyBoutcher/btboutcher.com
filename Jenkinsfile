@@ -1,9 +1,11 @@
 pipeline {
   agent any
   stages {
+
     /**
     * CI
     **/
+
     stage('Cloning Git') {
       steps {
         git 'https://github.com/bradleyboutcher/btboutcher.com'
@@ -25,29 +27,69 @@ pipeline {
         }
       }
     }
-    // Save development image in repository
+    // Push development image to repository
     stage('Push Development Image') {
+      when {
+        branch 'development'
+      }
       steps {
         script {
           docker.withRegistry( '', registryCredential ) {
             dockerImage.push();
-            dockerImage.push("latest")
           }
         }
       }
     }
-    // Remove local development image
+    // Update 'latest' only when production updates
+    stage('Push staging Image') {
+      when {
+        branch 'master'
+      }
+      steps {
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push('staging');
+          }
+        }
+      }
+    }
+    // Update 'latest' only when production updates
+    stage('Push latest Image') {
+      when {
+        branch 'production'
+      }
+      steps {
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push('latest');
+          }
+        }
+      }
+    }
+    // Remove local image build 
     stage('Remove Development Image') {
       steps {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
     /**
-    * CI
+    * CD
     **/
 
-    // Deploy production build to server, automatically updating as needed
+    // Deploy build to staging environment, automatically updating as needed
+    stage('Deploy Development Build') {
+      when {
+        branch 'master'
+      }
+      steps {
+        sh 'make staging'
+      }
+    }
+    // Deploy production build, automatically updating as needed
     stage('Deploy Production Build') {
+      when {
+        branch 'production'
+      }
       steps {
         sh 'make production'
       }
