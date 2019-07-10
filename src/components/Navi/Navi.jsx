@@ -24,8 +24,8 @@ export default class Navi extends Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" bsPrefix="toggle"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="#blog">Blog</Nav.Link>
-                        <Nav.Link href="#link">Github</Nav.Link>
+                        <Nav.Link href="/blog">Blog</Nav.Link>
+                        <Nav.Link href="https://github.com/bradleyboutcher">Github</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
