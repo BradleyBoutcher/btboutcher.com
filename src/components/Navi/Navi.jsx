@@ -10,11 +10,6 @@ export default class Navi extends Component {
         this.state = {active: false};
     }
 
-    toggleActive = () => {
-        var t = document.getElementById('toggle');
-        t.focus();
-    }
-
     render () {
         return (
             <Navbar bg="dark" variant="dark" expand="sm" fixed = "bottom" onToggle={this.toggleActive}>
@@ -26,7 +21,7 @@ export default class Navi extends Component {
                     height="30"
                     alt="bb"/>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" bsPrefix="toggle" id="toggle"/>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" bsPrefix="toggle"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <Nav.Link href="#blog">Blog</Nav.Link>

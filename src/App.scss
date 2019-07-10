@@ -6,17 +6,12 @@ $alert-color: #cb492a;
 $light-black-color: #706e72;
 $black-color: #414042;
 
-.jumbotron {
-    background: $black-color;
-    margin: 15px;
-    padding: 25px 25px;
-}
-
 .welcome {
-    color: white;
-    font-size: 20px;
+    position: relative;
+    color: black;
+    font-size: 50px;
+    padding: 50px;
 }
-
 
 /*------------------------------------------
   Responsive Grid Media Queries - 1280, 1024, 768, 480

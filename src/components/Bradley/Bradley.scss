@@ -177,15 +177,15 @@ $background-color: #CCCCCC;
 /* Large screens - DESKTOP */
 @media only screen and (min-width: 64.063em) {  .body-container {transform: scale(1)} } /* min-width 1025px, large screens */
  
-@media only screen and (min-width: 64.063em) and (max-width: 90em) {  .body-container {transform: scale(1)} } /* min-width 1024px and max-width 1440px, use when QAing large screen-only issues */
+@media only screen and (min-width: 64.063em) and (max-width: 90em) {  .body-container {transform: scale(.8)} } /* min-width 1024px and max-width 1440px, use when QAing large screen-only issues */
  
 /* XLarge screens */
-@media only screen and (min-width: 90.063em) {  .body-container {transform: scale(1)} } /* min-width 1441px, xlarge screens */
+@media only screen and (min-width: 90.063em) {  .body-container {transform: scale(.8)} } /* min-width 1441px, xlarge screens */
  
-@media only screen and (min-width: 90.063em) and (max-width: 120em) {  .body-container {transform: scale(1)} } /* min-width 1441px and max-width 1920px, use when QAing xlarge screen-only issues */
+@media only screen and (min-width: 90.063em) and (max-width: 120em) {  .body-container {transform: scale(.8)} } /* min-width 1441px and max-width 1920px, use when QAing xlarge screen-only issues */
  
 /* XXLarge screens */
-@media only screen and (min-width: 120.063em) {  .body-container {transform: scale(1.5)} } /* min-width 1921px, xlarge screens */
+@media only screen and (min-width: 120.063em) {  .body-container {transform: scale(.8)} } /* min-width 1921px, xlarge screens */
  
 /*------------------------------------------*/
  
@@ -204,10 +204,10 @@ $background-color: #CCCCCC;
 }
  
 /* Retina */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+@media only screen and (-webkit-min-device-pixel-ratio: .8),
 only screen and (-o-min-device-pixel-ratio: 3/2),
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5) {
+only screen and (min--moz-device-pixel-ratio: 1),
+only screen and (min-device-pixel-ratio: 1) {
     .body-container {transform: scale(.6)}
 }
  
@@ -228,5 +228,5 @@ only screen and (min-device-pixel-ratio: 1.5) {
  
 /* iPad Landscape */
 @media screen and (min-device-width: 481px) and (orientation:landscape) {
-    .body-container {transform: scale(1)}
+    .body-container {transform: scale(.8)}
 }
