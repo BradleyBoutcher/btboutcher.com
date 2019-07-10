@@ -12,11 +12,11 @@ function App() {
       <Navi/>
       <Jumbotron className = "jumbotron">
         <Row> 
-          <Col>
-          <Bradley/>
+          <Col xs="6">
+            <Bradley/>
           </Col>
-          <Col>
-          Hi, I'm, Bradley
+          <Col xs="6" className = "welcome">
+            Hi, I'm, Bradley
           </Col>
         </Row>
       </Jumbotron>

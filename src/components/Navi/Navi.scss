@@ -47,12 +47,12 @@
 }
 
 /* HOVER STYLES ON THE BUTTON */
-.toggle:focus .toggle-icon:before {
+.toggle.collapsed .toggle-icon:before {
     transform: rotate(-45deg) translate(2px, -3px);
-  }
+}
 
 /* adjust properties on the after pseudo element */
-.toggle:focus .toggle-icon::after {
+.toggle.collapsed .toggle-icon::after {
     transform: rotate(45deg) translate(2px, 3px);
 }
 
