@@ -10,16 +10,14 @@ function App() {
   return (
     <div>
       <Navi/>
-      <Jumbotron className = "jumbotron">
-        <Row> 
-          <Col>
-          <Bradley/>
+        <Row className="content">
+          <Col xs="4">
+            <Bradley/>
           </Col>
-          <Col>
-          Hi, I'm, Bradley
+          <Col xs="8" className = "welcome">
+            Hi, I'm Bradley
           </Col>
         </Row>
-      </Jumbotron>
     </div>
   );
 }

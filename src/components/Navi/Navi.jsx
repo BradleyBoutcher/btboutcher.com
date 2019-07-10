@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
-import {Nav, Navbar} from 'react-bootstrap'
+import {Nav, Navbar, Button} from 'react-bootstrap'
 import bb from "../../icons/bb-white-transparent.svg"
 
 import "./Navi.scss"
 
 export default class Navi extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {active: false};
+    }
+
     render () {
         return (
-            <Navbar bg="dark" variant="dark" expand="sm" fixed = "bottom">
+            <Navbar bg="dark" variant="dark" expand="sm" fixed = "bottom" onToggle={this.toggleActive}>
                 <Navbar.Brand href="#home">
                     <img
                     id="logo"
