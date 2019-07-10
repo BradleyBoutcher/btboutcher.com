@@ -15,7 +15,7 @@ tests: ## Run the current test suite
 	@docker-compose -f docker/Development/docker-compose.yml run --rm tests
 
 production: ## Deploy or update a production build 
-	@docker-compose -f docker/Production/docker-compose.yml up -d --build production
+	@docker-compose -f docker/Production/docker-compose.yml up --force-recreate production
 
 staging: ## Deploy or update a production build 
-	@docker-compose -f docker/Staging/docker-compose.yml up -d --build staging
+	@docker-compose -f docker/Staging/docker-compose.yml up --force-recreate staging
