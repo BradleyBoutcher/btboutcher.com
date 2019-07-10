@@ -24,12 +24,12 @@ $background-color: #CCCCCC;
     z-index: 1;
 }
 
-.container {
-    margin: 1%;
+.body-container {
+    padding: 0px 15px;
     transform-origin: left center;
     width: 250px; height: 250px;
     border-radius: 50%;
-    background-color: $background-color;
+    background-color: white;
     overflow: hidden;
     z-index: -20;
 }
@@ -165,34 +165,34 @@ $background-color: #CCCCCC;
 --------------------------------------------*/
  
 /* Small screens - MOBILE */
-@media only screen { .container {transform: scale(.5)} } /* Define mobile styles - Mobile First */
+@media only screen { .body-container {transform: scale(.6)} } /* Define mobile styles - Mobile First */
  
-@media only screen and (max-width: 40em) { .container {transform: scale(.5)} } /* max-width 640px, mobile-only styles, use when QAing mobile issues */
+@media only screen and (max-width: 40em) { .body-container {transform: scale(.6)} } /* max-width 640px, mobile-only styles, use when QAing mobile issues */
  
 /* Medium screens - TABLET */
-@media only screen and (min-width: 40.063em) {  .container {transform: scale(.7)} } /* min-width 641px, medium screens */
+@media only screen and (min-width: 40.063em) {  .body-container {transform: scale(.7)} } /* min-width 641px, medium screens */
  
-@media only screen and (min-width: 40.063em) and (max-width: 64em) {  .container {transform: scale(.7)} } /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {  .body-container {transform: scale(.7)} } /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
  
 /* Large screens - DESKTOP */
-@media only screen and (min-width: 64.063em) {  .container {transform: scale(1)} } /* min-width 1025px, large screens */
+@media only screen and (min-width: 64.063em) {  .body-container {transform: scale(1)} } /* min-width 1025px, large screens */
  
-@media only screen and (min-width: 64.063em) and (max-width: 90em) {  .container {transform: scale(1)} } /* min-width 1024px and max-width 1440px, use when QAing large screen-only issues */
+@media only screen and (min-width: 64.063em) and (max-width: 90em) {  .body-container {transform: scale(.8)} } /* min-width 1024px and max-width 1440px, use when QAing large screen-only issues */
  
 /* XLarge screens */
-@media only screen and (min-width: 90.063em) {  .container {transform: scale(1)} } /* min-width 1441px, xlarge screens */
+@media only screen and (min-width: 90.063em) {  .body-container {transform: scale(.8)} } /* min-width 1441px, xlarge screens */
  
-@media only screen and (min-width: 90.063em) and (max-width: 120em) {  .container {transform: scale(1)} } /* min-width 1441px and max-width 1920px, use when QAing xlarge screen-only issues */
+@media only screen and (min-width: 90.063em) and (max-width: 120em) {  .body-container {transform: scale(.8)} } /* min-width 1441px and max-width 1920px, use when QAing xlarge screen-only issues */
  
 /* XXLarge screens */
-@media only screen and (min-width: 120.063em) {  .container {transform: scale(1.5)} } /* min-width 1921px, xlarge screens */
+@media only screen and (min-width: 120.063em) {  .body-container {transform: scale(.8)} } /* min-width 1921px, xlarge screens */
  
 /*------------------------------------------*/
  
  
  
 /* Portrait */
-@media screen and (orientation:portrait) {  .container {transform: scale(.5)}  }
+@media screen and (orientation:portrait) {  .body-container {transform: scale(.6)}  }
 /* Landscape */
 @media screen and (orientation:landscape) { /* Landscape styles here */ }
  
@@ -200,33 +200,33 @@ $background-color: #CCCCCC;
 /* CSS for iPhone, iPad, and Retina Displays */
  
 /* Non-Retina */
-@media screen and (-webkit-max-device-pixel-ratio: 1) {
+@media screen and (-webkit-max-device-pixel-ratio: .6) {
 }
  
 /* Retina */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+@media only screen and (-webkit-min-device-pixel-ratio: .8),
 only screen and (-o-min-device-pixel-ratio: 3/2),
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5) {
-    .container {transform: scale(.7)}
+only screen and (min--moz-device-pixel-ratio: 1),
+only screen and (min-device-pixel-ratio: 1) {
+    .body-container {transform: scale(.6)}
 }
  
 /* iPhone Portrait */
 @media screen and (max-device-width: 480px) and (orientation:portrait) {
-    .container {transform: scale(.5)}
+    .body-container {transform: scale(.6)}
 } 
  
 /* iPhone Landscape */
 @media screen and (max-device-width: 480px) and (orientation:landscape) {
-    .container {transform: scale(.5)}
+    .body-container {transform: scale(.5)}
 }
  
 /* iPad Portrait */
 @media screen and (min-device-width: 481px) and (orientation:portrait) {
-    .container {transform: scale(.8)}
+    .body-container {transform: scale(.8)}
 }
  
 /* iPad Landscape */
 @media screen and (min-device-width: 481px) and (orientation:landscape) {
-    .container {transform: scale(1)}
+    .body-container {transform: scale(.8)}
 }

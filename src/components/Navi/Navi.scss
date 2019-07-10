@@ -1,0 +1,77 @@
+#logo:hover {
+    fill: grey;
+}
+
+@keyframes toggle-bottom {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(45deg) translate(-2px, -3px);
+    }
+}
+
+@keyframes toggle-top {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(-45deg) translate(-2px, 3px);
+    }
+}
+
+.toggle {
+    margin: 10px;
+    outline: none !important;
+    background: transparent;
+    border: transparent;
+    position: relative;
+    ::after {
+        border-top: 2px solid white;
+        content: "";
+        position: absolute;
+        height: 1px;
+        width: 15px;
+        left: 0px;
+        top: -2px;
+    }
+    ::before {
+        border-top: 2px solid white;
+        content: '';
+        position: absolute;
+        height: 1px;
+        width: 15px;
+        left: 0px;
+        top: 5px;
+    }
+}
+
+/* HOVER STYLES ON THE BUTTON */
+.toggle.collapsed .toggle-icon:before {
+    transform: rotate(-45deg) translate(2px, -3px);
+}
+
+/* adjust properties on the after pseudo element */
+.toggle.collapsed .toggle-icon::after {
+    transform: rotate(45deg) translate(2px, 3px);
+}
+
+/* this is one of the lines of the close icon */
+.toggle-icon:before {
+    /* preceding code stays the same */
+    transition: all 0.3s linear;
+  }
+/* this is the other line of the close icon */
+.toggle-icon::after {
+    /* preceding code stays the same */
+    transition: all 0.3s linear;
+}
+
+@media only screen and (min-width: 36em) {
+    .toggle {
+        display: none;
+        margin: 0;
+        padding: 0;
+        height: 0; width: 0;
+    }
+}
