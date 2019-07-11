@@ -1,7 +1,4 @@
-#logo:hover {
-    fill: grey;
-}
-
+/**** NavBar Toggle Button ****/
 @keyframes toggle-bottom {
     0% {
       transform: rotate(0);
@@ -21,11 +18,11 @@
 }
 
 .toggle {
+    height: 30px; width: 30px;
     margin: 10px;
     outline: none !important;
     background: transparent;
     border: transparent;
-    position: relative;
     ::after {
         border-top: 2px solid white;
         content: "";
@@ -44,6 +41,10 @@
         left: 0px;
         top: 5px;
     }
+}
+
+.toggle-icon {
+    position: relative;
 }
 
 /* HOVER STYLES ON THE BUTTON */
@@ -73,5 +74,25 @@
         margin: 0;
         padding: 0;
         height: 0; width: 0;
+    }
+}
+
+/**** Main Logo ****/
+$yellow: #FFDB79;
+
+.navbar-brand:hover .logo {
+    animation: switch 3s infinite;
+    animation: fillChange 3s infinite;
+}
+  
+@keyframes switch {
+    50% {
+        opacity: 1;
+    }
+}
+  
+@keyframes fillChange {
+    50% {
+        fill: grey;
     }
 }
