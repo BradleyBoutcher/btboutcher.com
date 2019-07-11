@@ -6,12 +6,13 @@ $alert-color: #cb492a;
 $light-black-color: #706e72;
 $black-color: #414042;
 
-.welcome {
+#welcome {
     font-family: 'Nunito', sans-serif;
     position: relative;
     color: black;
-    font-size: 50px;
+    font-size: 45px;
     padding: 50px;
+    padding-right: 0px;
 }
 
 .logo {
@@ -32,7 +33,7 @@ $black-color: #414042;
  
 @media all and (min-width: 480px) and (max-width: 768px) { }
  
-@media all and (max-width: 480px) { }
+@media all and (max-width: 480px) { #welcome { font-size: 42px; }}
  
 /*------------------------------------------
   Foundation Media Queries 
