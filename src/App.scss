@@ -7,10 +7,16 @@ $light-black-color: #706e72;
 $black-color: #414042;
 
 .welcome {
+    font-family: 'Nunito', sans-serif;
     position: relative;
     color: black;
     font-size: 50px;
     padding: 50px;
+}
+
+.logo {
+    display: block;
+    margin: auto;
 }
 
 /*------------------------------------------
