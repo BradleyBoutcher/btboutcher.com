@@ -13,7 +13,7 @@ export default class Navi extends Component {
     render () {
         return (
             <Navbar bg="dark" variant="dark" expand="sm" fixed = "bottom" onToggle={this.toggleActive}>
-                <Navbar.Brand href="/home">
+                <Navbar.Brand href="/">
                     <Logo iconTitle = "main-logo" width = "30" height = "30"/>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" bsPrefix="toggle"/>

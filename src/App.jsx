@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component} from 'react';
 
 import Bradley from './components/Bradley/Bradley'
 import Navi from './components/Navi/Navi'
@@ -7,29 +7,54 @@ import {Row, Col} from 'react-bootstrap'
 
 import './App.scss';
 
-const s = {
-    maxWidth: "1000px"
-}
+class App extends Component {
+    constructor(props) {
+        super(props)
 
-function App() {
-    return (
-        <div style={s}>
-                <Navi/>
-                <Row className="content">
-                    <Col xs="2" className= "logo">
-                        <Bradley/>
-                    </Col>
-                    <Col xs="8" className = "welcome">
-                        <TypeWriter
-                          id = "welcome"
-                          message = "Hi, I'm Bradley."
-                          speed = {50}
-                          cursorOnEnd = {true}
-                        />
-                    </Col>
-                </Row>
-        </div>
-    );
+        this.state = {
+            loading: true,
+            welcomeMessage: "",
+        }
+    }
+
+    componentDidMount = () => {
+        this.welcomeMessage()
+    }
+    
+    // Once we've waited a little, start typing
+    welcomeMessage = () => {
+        this.setState({
+            welcomeMessage: "Hi, I'm Bradley",
+        })
+        setTimeout(this.welcomeMessage, 750)
+    }
+
+    render = () => {
+        const { welcomeMessage } = this.state
+        
+        return (
+            <div className = "page">
+                <div className = "header">
+                    <Navi/>
+                    <Row className="content">
+                        <Col xs="2" className= "logo">
+                            <Bradley/>
+                        </Col>
+                        <Col xs="8" className = "welcome">
+                            <TypeWriter
+                                cursor = "_"
+                                cursorOnEnd = { true } 
+                                delay = { 200 }
+                                id = "welcome"
+                                message = { welcomeMessage }
+                                speed = { 100 }
+                            />
+                        </Col>
+                    </Row>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;
