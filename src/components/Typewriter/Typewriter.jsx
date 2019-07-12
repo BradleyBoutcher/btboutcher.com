@@ -10,28 +10,39 @@ import PropTypes from 'prop-types'
 
 export default class TypeWriter extends Component {
     constructor(props) {
-        super(props)  
+        super(props)
 
         this.state = {
-            text: "",   // message that is displayed
-            a: [],      // characters to be printed
-            i: 0,       // current index of 'a'
-            _: true,    // visibility of cursor
+            text: "",               // message that is displayed
+            a: [],                  // characters to be printed
+            i: 0,                   // current index of 'a'
+            showCursor: false,      // visibility of cursor
         }  
     }
 
     componentWillMount() {
         const { message, } = this.props  
 
-        // create our array 
+        // create our array of letters
         this.setState({
-            a: message.split('')
+            a: message.length > 0 ? [] : message.split('')
         })
     }
 
     componentDidMount() {
-        this.typewriter()
         this.toggleCursor()
+    }
+
+    componentWillReceiveProps() {
+        const { message, } = this.props  
+        
+        // create our array of letters again if new word passed in
+        this.setState({
+            a: message.length > 0 ? message.split('') : []
+        })
+
+        // kickoff typing with newly received words
+        this.typewriter()
     }
 
     // called each time the state updates, until finished
@@ -39,7 +50,7 @@ export default class TypeWriter extends Component {
         const { text, a, i} = this.state  
         const { speed } = this.props
         
-        if (i < a.length - 1) {
+        if (i < a.length ) {
             var char = a[i]
             var cur = text + char
             
@@ -54,31 +65,33 @@ export default class TypeWriter extends Component {
 
     // change visibility of cursor on and off
     toggleCursor = () => {
-        const { cursorOnEnd, speed} = this.props
-        const { _ } = this.state
+        const { cursorOnEnd } = this.props
+        const { showCursor } = this.state
         
         if (cursorOnEnd) {
             this.setState({
-                _: !_
+                showCursor: !showCursor
             })
 
-            setTimeout(this.toggleCursor, speed*10)
+            setTimeout(this.toggleCursor, 1000)
         }
     }
 
     render () {
-        
+        const { cursor } = this.props
         return (
             <div className = "typed-message" id = {this.props.id}>
-                {this.state.text} {this.state._ ? "_" : ""}
+                {this.state.text} {this.state.showCursor ? cursor : ""}
             </div>
         )
     }
 }
 
 TypeWriter.propTypes = {
-    id: PropTypes.string,
-    message: PropTypes.string,
-    speed: PropTypes.number,
-    cursorOnEnd: PropTypes.bool,
+    cursor: PropTypes.string,       // character to be used as cursor
+    delay: PropTypes.number,        // holds off on typing until delay
+    id: PropTypes.string,           // element id for easy custom styling
+    message: PropTypes.string,      // message to display
+    speed: PropTypes.number,        // speed of typing
+    cursorOnEnd: PropTypes.bool,    // show cursor at end of line
 }
