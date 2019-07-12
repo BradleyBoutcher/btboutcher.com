@@ -3,7 +3,7 @@ $dark-color: rgb(44,44,44);
 $light-color: #e6d5c3;
 $medium-color: #977978;
 $alert-color: #cb492a;
-$light-black-color: #706e72;
+$light-black-color: #f0f0f0;
 $black-color: #414042;
 
 #welcome {
@@ -13,11 +13,22 @@ $black-color: #414042;
     font-size: 45px;
     padding: 50px;
     padding-right: 0px;
+    margin-left: 15px;
 }
 
 .logo {
     display: block;
     margin: auto;
+}
+
+.page {
+    max-height: 1500px;
+}
+
+.header {
+    display: block;
+    height: 25%;
+    background-color: $light-black-color;
 }
 
 /*------------------------------------------
@@ -31,9 +42,13 @@ $black-color: #414042;
  
 @media all and (min-width: 768px) and (max-width: 1024px) { }
  
-@media all and (min-width: 480px) and (max-width: 768px) { }
+@media all and (min-width: 480px) and (max-width: 768px) { 
+
+}
  
-@media all and (max-width: 480px) { #welcome { font-size: 42px; }}
+@media all and (max-width: 480px) { 
+    #welcome { font-size: 42px; }
+}
  
 /*------------------------------------------
   Foundation Media Queries 

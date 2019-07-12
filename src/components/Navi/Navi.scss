@@ -1,22 +1,4 @@
 /**** NavBar Toggle Button ****/
-@keyframes toggle-bottom {
-    0% {
-      transform: rotate(0);
-    }
-    100% {
-      transform: rotate(45deg) translate(-2px, -3px);
-    }
-}
-
-@keyframes toggle-top {
-    0% {
-      transform: rotate(0);
-    }
-    100% {
-      transform: rotate(-45deg) translate(-2px, 3px);
-    }
-}
-
 .toggle {
     height: 30px; width: 30px;
     margin: 10px;
@@ -47,24 +29,15 @@
     position: relative;
 }
 
-/* HOVER STYLES ON THE BUTTON */
 .toggle.collapsed .toggle-icon:before {
     transform: rotate(-45deg) translate(2px, -3px);
 }
 
-/* adjust properties on the after pseudo element */
 .toggle.collapsed .toggle-icon::after {
     transform: rotate(45deg) translate(2px, 3px);
 }
 
-/* this is one of the lines of the close icon */
-.toggle-icon:before {
-    /* preceding code stays the same */
-    transition: all 0.3s linear;
-  }
-/* this is the other line of the close icon */
-.toggle-icon::after {
-    /* preceding code stays the same */
+.toggle-icon:before, .toggle-icon::after {
     transition: all 0.3s linear;
 }
 
@@ -77,12 +50,33 @@
     }
 }
 
+/**** Primary Bar ****/
+.navbar {
+    @media only screen and (min-width: 36em) {
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+}
+
+/**** Links ****/
+
+.nav-link {
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
 /**** Main Logo ****/
 $yellow: #FFDB79;
 
-.navbar-brand:hover .logo {
-    animation: switch 3s infinite;
-    animation: fillChange 3s infinite;
+.navbar-brand {
+    @media only screen and (min-width: 36em) {
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+    :hover .logo {
+        animation: switch 3s infinite;
+        animation: fillChange 3s infinite;
+    }
 }
   
 @keyframes switch {
