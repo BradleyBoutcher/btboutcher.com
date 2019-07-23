@@ -13,6 +13,7 @@ class App extends Component {
 
         this.state = {
             loading: true,
+            showWelcomeMessageCursor: true,
             welcomeMessage: "",
         }
     }
@@ -30,7 +31,7 @@ class App extends Component {
     }
 
     render = () => {
-        const { welcomeMessage } = this.state
+        const { showWelcomeMessageCursor, welcomeMessage } = this.state
         
         return (
             <div className = "page">
@@ -43,10 +44,15 @@ class App extends Component {
                         <Col xs="8" className = "welcome">
                             <TypeWriter
                                 cursor = "_"
-                                cursorOnEnd = { true } 
+                                cursorOnEnd = { showWelcomeMessageCursor } 
                                 delay = { 200 }
                                 id = "welcome"
                                 message = { welcomeMessage ? welcomeMessage : ""}
+                                onComplete = { () => { 
+                                    this.setState({
+                                        showWelcomeMessageCursor: false,
+                                    })
+                                }}
                                 speed = { 100 }
                             />
                         </Col>

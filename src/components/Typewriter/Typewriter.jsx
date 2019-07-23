@@ -26,8 +26,29 @@ export default class TypeWriter extends Component {
     }
 
     componentWillReceiveProps = async () => {
-        // kickoff typing with newly received words
-        await this.typewriter()
+        const { finished } = this.state
+
+        if (!finished) {
+            // kickoff typing with newly received words
+            await this.typewriter()
+
+            this.checkForCompletion()
+        }
+    }
+
+    // verify that we have finished typing the desired message
+    checkForCompletion = () => {
+        var { id, message, onComplete } = this.props
+
+        var currentMessage = document.getElementById(id).innerText;
+
+        if (currentMessage.includes(message)) {
+            this.setState({
+                finished: true,
+            })
+
+            onComplete()
+        }
     }
 
     generateArray = async () => {
@@ -42,9 +63,12 @@ export default class TypeWriter extends Component {
     // called each time the state updates, until finished
     typewriter = async () => {
         const { text, a, i, } = this.state  
-        const { message, finished, speed, } = this.props
+        const { message, speed, } = this.props
 
         // don't bother if there is no message
+        if (!message) return 
+        
+        // don't bother if there is an empty message
         if (message.length === 0) return
 
         // if there is a message, but no array, generate one
@@ -61,13 +85,7 @@ export default class TypeWriter extends Component {
             })
 
             setTimeout(this.typewriter, speed)
-
-        // we've reached the end, set the state to reflect this
-        } else if (i >= a.length && !finished) {
-            this.setState({
-                finished: true,
-            })
-        } 
+        }
     }
 
     // change visibility of cursor on and off
