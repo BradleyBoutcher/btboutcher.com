@@ -46,7 +46,7 @@ class App extends Component {
                                 cursorOnEnd = { true } 
                                 delay = { 200 }
                                 id = "welcome"
-                                message = { welcomeMessage }
+                                message = { welcomeMessage ? welcomeMessage : ""}
                                 speed = { 100 }
                             />
                         </Col>

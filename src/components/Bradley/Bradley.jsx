@@ -5,7 +5,7 @@ export default class Bradley extends Component {
     render() {
         return (
             <div className = 'body-container' >
-                <div className = 'body' style={{background: "grey"}}>
+                <div className = 'body'>
                     <div className = 'neck'/>
                     <div className = 'head'>
                         <div className = 'hair'>
