@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 /**
- * Typewriter Component for displaying text as if it was typed
- * Adjusted to work with react and props
+ * Typewriter Component for displaying text as if it was typed.
  * 
  * Copyright Bradley Boutcher 2019
  */
@@ -46,7 +45,7 @@ export default class TypeWriter extends Component {
             this.setState({
                 finished: true,
             })
-
+            console.log("finished typing...")
             onComplete()
         }
     }

@@ -30,9 +30,16 @@ class App extends Component {
         setTimeout(this.welcomeMessage, 750)
     }
 
+    // hide the cursor for welcome message
+    hideWelcomeMessageCursor = async () => {
+        this.setState({
+            showWelcomeMessageCursor: false,
+        })
+        console.log("hiding cursor...")
+    }
+
     render = () => {
         const { showWelcomeMessageCursor, welcomeMessage } = this.state
-        
         return (
             <div className = "page">
                 <div className = "header">
@@ -48,11 +55,7 @@ class App extends Component {
                                 delay = { 200 }
                                 id = "welcome"
                                 message = { welcomeMessage ? welcomeMessage : ""}
-                                onComplete = { () => { 
-                                    this.setState({
-                                        showWelcomeMessageCursor: false,
-                                    })
-                                }}
+                                onComplete = { this.hideWelcomeMessageCursor }
                                 speed = { 100 }
                             />
                         </Col>
